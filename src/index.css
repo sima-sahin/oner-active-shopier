@@ -1,0 +1,79 @@
+@import "tailwindcss";
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  letter-spacing: -0.04em;
+
+  color-scheme: light dark;
+  color: rgb(54,65,83);
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+
+a {
+  font-weight: 500;
+  color: #242b33;
+  text-decoration: inherit;
+}
+a:hover {
+  color: #1D232A;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  place-items: center;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
+}
+
+/* button {
+  border-radius: 16px;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: #ffffff;
+  color: #1D232A;
+  cursor: pointer;
+  transition: border-color 0.25s;
+} */
+ button {
+  cursor: pointer;
+ }
+
+/* button:focus,
+button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+} */
+
+@media (prefers-color-scheme: light) {
+  :root {
+    color: #08233b;
+    background-color: #ffffff;
+  }
+  a:hover {
+    color: #364153;
+  }
+  /* button {
+    background-color: #f9f9f9;
+  } */
+}
+ .input{
+  background-color: white;
+  color: black;
+  padding: 10px;
+  border: solid 1px black;
+  /* width: 240px; */
+ }
