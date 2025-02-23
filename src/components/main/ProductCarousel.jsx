@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import db from "../../store/db";
 import { useEffect, useState } from "react";
 import { useRef } from "react";
+import { RiArrowLeftWideFill } from "react-icons/ri";
+import { RiArrowRightWideFill } from "react-icons/ri";
 
 const ProductCarousel = ({ theme }) => {
   const [filteredProducts, setFilteredProducts] = useState([]);
@@ -55,6 +57,7 @@ const ProductCarousel = ({ theme }) => {
   };
 
   return (
+    /* Header */
     <div className="mt-8 mb-12 mx-auto w-330">
     <div className="flex items-center justify-between">
       <div className="m-2">
@@ -66,21 +69,17 @@ const ProductCarousel = ({ theme }) => {
       </div>
     </div>
 
-    {/* Carousel Wrapper */}
+    {/* Carousel */}
     <div className="relative">
-      {/* Prev Button */}
       <button
         onClick={handlePrev}
-        className="absolute left-0 top-1/2 -translate-y-1/2 bg-white p-2 shadow z-10 hidden md:block"
-      >
-        Prev
+        className="absolute left-0 top-1/2 -translate-y-1/2 text-4xl font-light hover:text-gray-600 z-10 hidden md:block">
+        <RiArrowLeftWideFill />
       </button>
 
-      {/* Kaydırılabilir Alan */}
       <div
         ref={scrollContainerRef}
-        className="flex gap-2 overflow-x-auto snap-x snap-mandatory scroll-smooth scroll-pl-2"
-      >
+        className="flex gap-3 overflow-x-auto snap-x snap-mandatory scroll-smooth scroll-pl-2">
         {filteredProducts.map((value) => (
           <div
             key={value.id}
@@ -90,12 +89,10 @@ const ProductCarousel = ({ theme }) => {
         ))}
       </div>
 
-      {/* Next Button */}
       <button
         onClick={handleNext}
-        className="absolute right-0 top-1/2 -translate-y-1/2 bg-white p-2 shadow z-10 hidden md:block"
-      >
-        Next
+        className="absolute right-0 top-1/2 -translate-y-1/2 text-4xl font-light hover:text-gray-600 z-10 hidden md:block">
+        <RiArrowRightWideFill />
       </button>
     </div>
   </div>

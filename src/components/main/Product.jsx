@@ -7,19 +7,21 @@ const Product = ({ value }) => {
     const { name, color, price, image, isNew, discountRate, slug } = value;
     const isNewBool = (isNew == "true") ? true : false;
 
-    const isDiscount = (discountRate >= 40) ? true : false;
+    const isDiscount = discountRate >= 10 ? true : false;
+    const newPrice = isDiscount ? price*(100-discountRate)/100+"0" : price+".00";
     
   return (
     <div className="relative bg-white w-78 overflow-hidden">
       {isNewBool && (
-        <div className="absolute top-2 left-2 bg-white border border-gray-300 text-gray-700 text-xs px-2 py-1 rounded">
+        <div className="absolute top-2 left-2 border-2 border-gray-500 text-gray-800 text-xs px-2 py-1 rounded">
           NEW
         </div>
       )}
-       {isDiscount && (
-        <div className="absolute top-2 left-2 bg-white border border-gray-300 text-gray-700 text-xs px-2 py-1 rounded">
-          %{discountRate}
-        </div>
+      
+      {isDiscount && (
+        <span className="absolute top-2 left-2 text-sm border-2 border-red-400 text-red-500 tracking-wide mb-2 py-1 px-2 rounded">
+          {discountRate}%
+        </span>
       )}
 
       {/* Favori (Wishlist) İkonu */}
@@ -51,8 +53,13 @@ const Product = ({ value }) => {
         </h2>
       
 
-        <p className="text-xs text-gray-500 mb-2">{color}</p>
-        <p className="text-base font-semibold">€{price}.00</p>
+        <p className="text-xs text-gray-500 mb-3">{color}</p>
+        {isDiscount ?  
+        <div className="flex gap-x-2">
+          <div className="text-md font-semibold mb-8 line-through">€{price}.00</div>
+          <div className="text-lg font-semibold mb-8 text-red-500">€{newPrice}</div>
+        </div> : <div className="text-lg font-semibold mb-8">€{newPrice}</div> }
+
       </div>
       
     </div>

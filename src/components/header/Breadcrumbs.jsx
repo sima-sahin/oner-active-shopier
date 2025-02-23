@@ -15,19 +15,19 @@ const Breadcrumbs = ({ category, name, collection }) => {
             setCategoryName("Shorts");
         }
         if(category === "hoodies"){
-            setCategoryName("Hoodies");
+            setCategoryName("Hoodies & Sweatshirts");
         }
         if(category === "jackets"){
-            setCategoryName("Jackets");
+            setCategoryName("Coats & Jackets");
         }
         if(category === "tops"){
-            setCategoryName("Tops");
+            setCategoryName("T-Shirts & Tops");
         }
         if(category === "joggers"){
             setCategoryName("Joggers");
         }
         if(category === "bras"){
-            setCategoryName("Bras");
+            setCategoryName("Sports Bras");
         }
         if(collection === "effortless"){
             setCollectionName("Effortless");
@@ -36,7 +36,7 @@ const Breadcrumbs = ({ category, name, collection }) => {
             setCollectionName("Timeless");
         }
         if(collection === "soft-motion"){
-            setCollectionName("Soft Motion");
+            setCollectionName("SoftMotion™");
         }
         if(collection === "lounge"){
             setCollectionName("Lounge");
@@ -50,7 +50,7 @@ const Breadcrumbs = ({ category, name, collection }) => {
     <>
         <div className="breadcrumbs text-md p-2">
           <ul>
-            <li><a onClick={() => navigate("/product")}>All Products</a></li>
+            <li><a onClick={() => navigate("/all-products")}>All Products</a></li>
             <li><a onClick={() => navigate(`/${category}`)}>{categoryName}</a></li>
             <li><a onClick={() => navigate(`/${collection}`)}>{collectionName}</a></li>
             <li>{name}</li>

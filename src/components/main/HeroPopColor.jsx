@@ -25,7 +25,7 @@ const HeroPopColor = () => {
           <div className="absolute inset-0 flex flex-col items-left justify-center text-left text-white ml-12">
             <p className="text-5xl font-bold mb-2">POP OF COLOR</p>
             <p className="text-md">The ultimate pick-me-up for routines and mindsets</p>
-            <div onClick={() => navigate("/best-sellers")} className="border border-white p-3 w-28 text-center mt-4 rounded-md text-sm font-semibold cursor-pointer">SHOP NOW</div>
+            <div onClick={() => navigate("/pop-of-color")} className="border border-white p-3 w-28 text-center mt-4 rounded-md text-sm font-semibold cursor-pointer">SHOP NOW</div>
            </div>
         </div>
   )
