@@ -16,7 +16,7 @@ const Broadcast = () => {
   }, [title])
 
   return (
-    <div className="w-screen h-max-8 bg-black text-white text-center py-3 text-sm">
+    <div className="w-screen h-max-8 bg-black text-white text-center py-3 text-xs tracking-normal">
       {title}
     </div>
   )

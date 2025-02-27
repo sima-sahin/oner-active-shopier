@@ -32,6 +32,11 @@ const ProductCarousel = ({ theme }) => {
     setTitle("ALPINE GREEN COLLECTION");
     setParagraph("Best shade of green, just for you");
   }
+  else if(theme == "discounted-items"){
+    setFilteredProducts([...db.filter((value) => value.discountRate >= 10)]);
+    setTitle("DISCOUNTED ITEMS");
+    setParagraph("Don't miss out our discounts");
+  }
   }, [theme])
 
   const scrollContainerRef = useRef(null);

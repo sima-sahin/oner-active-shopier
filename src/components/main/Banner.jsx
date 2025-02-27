@@ -4,6 +4,10 @@ import { useNavigate } from "react-router-dom";
 import bestSellers from "../../assets/banners/concept/best-sellers-banner.jpg";
 import newReleases from "../../assets/banners/concept/new-release-banner.jpg";
 import outlet from "../../assets/banners/concept/outlet-banner.jpg";
+import wishlist from "../../assets/banners/concept/wishlist-banner.jpg";
+import loyaltyClub from "../../assets/banners/concept/loyalty-club-banner.jpg";
+import popOfColor from "../../assets/banners/concept/pop-of-color-banner.jpg";
+import yourTurn from "../../assets/banners/concept/your-turn-banner.jpg";
 
 import effortless from "../../assets/banners/collection/effortless-banner.jpg";
 import everyDay from "../../assets/banners/collection/everyday-banner.jpg";
@@ -52,6 +56,14 @@ const Banner = ({ concept }) => {
         return shorts;
       case "tops":
         return tops;
+      case "wishlist":
+        return wishlist;
+      case "pop-of-color":
+        return popOfColor;
+      case "loyalty-club":
+        return loyaltyClub;
+      case "your-turn":
+        return yourTurn;
       default:
         return allProducts;
   }

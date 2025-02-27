@@ -16,14 +16,14 @@
 }
 
 
-a {
+/* a {
   font-weight: 500;
   color: #242b33;
   text-decoration: inherit;
 }
 a:hover {
   color: #1D232A;
-}
+} */
 
 body {
   margin: 0;
@@ -76,4 +76,23 @@ button:focus-visible {
   padding: 10px;
   border: solid 1px black;
   /* width: 240px; */
+ }
+
+ .custom-a{
+  color: var(--color-zinc-400); 
+  text-decoration: none;
+  transition: color 0.25s;
+  font-size: 13px;
+  font-weight: 500;
+
+ }
+ .custom-a:hover{
+  text-decoration: underline;
+  color: var(--color-zinc-500); 
+ }
+
+ .custom-h{
+  color: rgb(0, 0, 0);
+  font-size: 18px;
+  font-weight: 700;
  }

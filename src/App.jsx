@@ -12,6 +12,9 @@ import Signup from "./pages/Signup";
 import NotFound from "./pages/NotFound";
 import Navbar from "./components/header/Navbar";
 import Footer from "./components/header/Footer";
+import Checkout from "./pages/Checkout";
+import AboutUs from './pages/AboutUs';
+import LoyaltyClub from './pages/LoyaltyClub';
 
 
 function App() {
@@ -25,6 +28,9 @@ function App() {
           <Route path="/cart" element={<Cart />} />
           <Route path="/wishlist" element={<Wishlist />} />
           <Route path="/:slug" element={<Details />} />
+          <Route path="/about-us" element={<AboutUs />} />
+          <Route path="/loyalty-club" element={<LoyaltyClub />} />
+
 
           <Route path="/all-products" element={<AllProducts concept="all-products" />} />
           <Route path="/pop-of-color" element={<AllProducts concept="pop-of-color" />} />
@@ -48,6 +54,7 @@ function App() {
 
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
+          <Route path="/checkout" element={<Checkout />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>

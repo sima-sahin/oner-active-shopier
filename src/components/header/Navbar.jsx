@@ -6,8 +6,11 @@ import { RxPerson } from "react-icons/rx";
 import { HiOutlineShoppingBag } from "react-icons/hi2";
 import ProductCarousel from "../main/ProductCarousel";
 import { useState } from "react";
+import useCartStore from "../../store/store";
 
 const Navbar = () => {
+  const { cartCount, wishlistCount } = useCartStore();
+
   const [input, setInput] = useState("");
 
   const navigate = useNavigate();
@@ -24,7 +27,7 @@ const Navbar = () => {
 
           <div className="flex items-center cursor-pointer" onClick={() => navigate("/")}><img src={onerActiveLogo} alt="oner-active-logo" className="w-10"/></div>
 
-          <div className="flex gap-8">
+          <div className="flex gap-8 ml-42">
 
               <div className="">
                 <input id="my-drawer" type="checkbox" className="drawer-toggle" />
@@ -53,7 +56,7 @@ const Navbar = () => {
                         <div className="cursor-pointer link-hover py-1 text-xs" onClick={() => navigate("/jackets")}>Coats & Jackets</div>
                         <div className="cursor-pointer link-hover py-1 text-xs" onClick={() => navigate("/shorts")}>Shorts</div>
                         <div className="cursor-pointer link-hover py-1 text-xs" onClick={() => navigate("/bras")}>Sports Bras</div>
-                        <div className="cursor-pointer link-hover py-1 text-xs" onClick={() => navigate("/tops")}>T-shirts & Tops</div>
+                        <div className="cursor-pointer link-hover py-1 text-xs" onClick={() => navigate("/tops")}>T-Shirts & Tops</div>
                       </div>
 
                       <div className="flex flex-col text-white">
@@ -76,12 +79,12 @@ const Navbar = () => {
             <div className="cursor-pointer" onClick={() => navigate("/about-us")}>ABOUT US</div>
           </div>
 
-          <div className="flex items-center gap-4 mr-4">
+          <div className="flex items-center gap-4 mr-4 relative">
 
             <div className="drawer drawer-end">
               <input id="my-drawer-4" type="checkbox" className="drawer-toggle" />
               <div className="drawer-content">
-                <label htmlFor="my-drawer-4" className=" "><SlMagnifier className="cursor-pointer text-xl" />
+                <label htmlFor="my-drawer-4" className=""><SlMagnifier className="cursor-pointer text-xl" />
                 </label>
               </div>
               <div className="drawer-side z-40">
@@ -100,9 +103,35 @@ const Navbar = () => {
                 </ul>
               </div>
             </div>
-            <CiHeart className="cursor-pointer text-6xl" onClick={() => navigate("/wishlist")}/>
-            <RxPerson className="cursor-pointer text-5xl" onClick={() => navigate("/profile")}/>
-            <HiOutlineShoppingBag className="cursor-pointer text-5xl" onClick={() => navigate("/cart")}/>
+
+            <div className="relative">
+              {wishlistCount() > 0 && ( 
+                <span className="absolute -top-1 -right-1 bg-zinc-800 text-white text-[10px] font-bold px-1.5 py-0.5 rounded-full cursor-pointer" onClick={() => navigate("/wishlist")}>
+                  {wishlistCount()}
+                </span>
+              )}
+              <CiHeart
+                className="cursor-pointer text-2xl"
+                onClick={() => navigate("/wishlist")}
+              />
+            </div>
+
+            <div className="relative">
+              <RxPerson className="cursor-pointer text-xl" onClick={() => navigate("/profile")}/>
+            </div>
+
+            <div className="relative">
+              {cartCount() > 0 && (
+                <span className="absolute -top-1 -right-1 bg-zinc-800 text-white text-[10px] font-bold px-1.5 py-0.5 rounded-full cursor-pointer" onClick={() => navigate("/cart")}>
+                  {cartCount()}
+                </span>
+              )}
+              <HiOutlineShoppingBag
+                className="cursor-pointer text-xl"
+                onClick={() => navigate("/cart")}
+              />
+            </div>
+            
           </div>
         </div>
       </div>

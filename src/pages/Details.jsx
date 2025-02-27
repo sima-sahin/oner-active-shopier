@@ -3,16 +3,38 @@ import { useParams } from "react-router-dom";
 import db from "../store/db";
 import Breadcrumbs from "../components/header/Breadcrumbs";
 import { HiOutlineShoppingBag } from "react-icons/hi2";
-import { CiHeart } from "react-icons/ci";
+import { FaHeart } from "react-icons/fa";
+import { FaRegHeart } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+import ProductCarousel from "../components/main/ProductCarousel";
+import CompletedLook from "../components/main/CompletedLook";
+import DetailsAccordion from "../components/main/DetailsAccordion";
+import { TbTruckDelivery } from "react-icons/tb";
+import { TbTruckReturn } from "react-icons/tb";
+import { IoMdStar } from "react-icons/io";
+import useCartStore from "../store/store";
+
 
 const Details = () => {
+  const { addToCart, addToWishlist, isProductInWishlist, removeFromWishlist } = useCartStore();
+
+  // (state) => ({
+  //   addToCart: state.addToCart,
+  //   addToWishlist: state.addToWishlist,
+  //   wishlist: state.wishlist,
+  // })
+
+
   const { slug } = useParams();
   const navigate = useNavigate();
   const selectedProduct = db.find((value) => value.slug === slug);
   const isDiscount = selectedProduct.discountRate >= 10 ? true : false;
-  const price = isDiscount ? selectedProduct.price*(100-selectedProduct.discountRate)/100+"0" : selectedProduct.price+".00"; 
+  const price = isDiscount ? selectedProduct.price*(100-selectedProduct.discountRate)/100 : selectedProduct.price;
+  const formattedPrice = `€${price.toFixed(2)}`;
+  const isInStock = selectedProduct.size.length > 0 ? true : false;
+
+  const isInWishlist = isProductInWishlist(selectedProduct.id);
 
   const [selectedColor, setSelectedColor] = useState(selectedProduct.color);
 
@@ -24,7 +46,20 @@ const Details = () => {
   const otherColors = db.filter((value) => {
     return (value.collection == selectedProduct.collection) && (value.category == selectedProduct.category);
   });
-  console.log(otherColors)
+
+  const completedLook = db.filter((value) => {
+    return selectedProduct.color == value.color
+  });
+
+  const allSizes = ["XS", "S", "M", "L", "XL", "XXL"];
+  const [selectedSize, setSelectedSize] = useState(null);
+
+  const handleSizeClick = (sizeValue, isAvailable) => {
+    if (isAvailable) {
+      setSelectedSize(sizeValue);
+    }
+  };
+
   return (
     <>
     
@@ -34,28 +69,29 @@ const Details = () => {
 
       <div className="bg-white pt-4 flex flex-col md:flex-row gap-6 w-330 mx-auto">
         {/* SOL TARAF: İki Görsel */}
-        <div className="flex w-full md:w-5/7 gap-2">
+       
+        <div className="flex w-full flex-col">
+          <div className="flex flex-row w-full md:w-4/7 gap-2">
+            <img
+                src={selectedProduct.image[0]}
+              alt={selectedProduct.name}
+              className="w-110 object-cover"
+            />
+            <img
+              src={selectedProduct.image[1]}
+              alt={selectedProduct.name}
+              className="w-110 object-cover"
+            />
+          </div>
           <img
             src={selectedProduct.image[0]}
             alt={selectedProduct.name}
-            className="w-110 object-cover"
-          />
-          <img
-            src={selectedProduct.image[1]}
-            alt={selectedProduct.name}
-            className="w-110 object-cover"
-          />
-        </div>
-        <div className="flex flex-row w-full">
-          <img
-            src={selectedProduct.image[0]}
-            alt={selectedProduct.name}
-            className="w-230 object-cover"
+            className="w-222 object-cover mt-2"
           />
         </div>
 
         {/* SAĞ TARAF: Ürün Bilgileri */}
-        <div className="flex flex-col w-full md:w-2/7 ml-[-45px]">
+        <div className="flex flex-col w-full md:w-3/7 ml-[-45px]">
           {/* Yeni etiketini gösterme */}
          <div className="flex items-center justify-between">
           {selectedProduct.isNew === "true" && (
@@ -74,32 +110,15 @@ const Details = () => {
           <div className="text-3xl font-bold mb-2">{selectedProduct.name.toUpperCase()}</div>
 
           {/* Renk bilgisi */}
-          <p className="mt-1 mb-8">Color: {selectedProduct.color}</p>
-
-          {/* Beden seçimi */}
-          {selectedProduct.size.length > 0 ? <><label htmlFor="size" className="mb-1 font-medium">
-            Select size
-          </label>
-          <select
-            id="size"
-            className="border rounded p-2 mb-3 w-48 focus:outline-none focus:ring-1 focus:ring-gray-300">
-            {selectedProduct.size.map((size) => (
-              <option key={size}>{size}</option>
-            ))}
-          </select></> : <><div className="my-8 text-red-500 font-bold underline">SOLD OUT</div></> }
-
-
-          {/* Size-Assistant */} 
-          <div className="underline cursor-pointer text-xs mb-10 hover:text-black tracking-">Size-Assistant: Find your perfect Size</div>
-
+          <p className="mt-1 mb-6">Color: {selectedProduct.color}</p>
 
           {/* Color Swatches */} 
-          <div className="flex flex-wrap gap-4 mb-6">
+          <div className="flex flex-wrap gap-2 mb-4">
             {otherColors.map((value, index) => (
               <button
                 key={index}
                 onClick={() => handleColorSelect(value.color, value.slug)}
-                className={`border rounded hover:border-black cursor-pointer 
+                className={`border hover:border-black cursor-pointer 
                   ${selectedColor === value.color ? "border-black" : "border-gray-300"}`}>
                 <img className="w-16 h-16 object-cover"
                   src={value.image[0]}
@@ -108,23 +127,98 @@ const Details = () => {
             ))}
           </div>
 
-          {/* Fiyat bilgisi */}
-          {isDiscount ?  <div className="flex gap-x-2">
-              <div className="text-lg font-semibold mb-8 line-through">€{selectedProduct.price}.00</div>
-              <div className="text-2xl font-semibold mb-8 text-red-500">€{price}</div>
-            </div> : <div className="text-2xl font-semibold mb-8">€{price}</div> }
+          {/* Beden seçimi */}
+          <div className="my-2">
+            <label htmlFor="size">Select size</label>
+            <div className="flex items-center justify-evenly my-2">
+              {allSizes.map((value) => {
+                const isAvailable = selectedProduct.size.includes(value);
+                const isSelected = selectedSize === value;
+                return (
+                  <div
+                    key={value}
+                    onClick={() => handleSizeClick(value, isAvailable)}
+                    className={`border border-gray-300 py-3 text-center min-w-14 
+                      ${isAvailable ? `cursor-pointer border-gray-300 
+                         ${isSelected ? "border-2 border-gray-500 text-black font-semibold" : "text-gray-700"}`
+                      :
+                        "cursor-not-allowed line-through text-gray-400 border-gray-300"
+                      }`}>
+                    {value}
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* Size-Assistant */} 
+          <div className="underline cursor-pointer text-xs hover:text-black">Size-Assistant: Find your perfect Size</div>
+
+
+          <div className="flex justify-between items-start w-full max-w-md my-8">
+            <div>
+              {/* In Stock */}
+              {isInStock ?  
+              <div className="flex items-center gap-2 mb-1">
+                <span className="inline-block w-3 h-3 bg-green-600 rounded-full"></span>
+                <span>In Stock</span>
+              </div> :
+              <div className="flex items-center gap-2 mb-1">
+               <span className="inline-block w-3 h-3 bg-red-500 rounded-full"></span>
+               <span>Out of Stock</span>
+             </div>
+             }
+
+              {/* Oner Points */}
+              <div className="flex items-center gap-1 ml-[-4px]">
+                <IoMdStar className="text-blue-400 text-xl"/>
+                <span>{price*100} Oner Points</span>
+              </div>
+            </div>
+
+             {/* Fiyat bilgisi */}
+          {isDiscount ?  <div className="flex gap-x-2 mr-2">
+              <div className="text-lg font-semibold line-through">€{selectedProduct.price}.00</div>
+              <div className="text-2xl font-semibold text-red-500">{formattedPrice}</div>
+            </div> : <div className="text-2xl font-semibold mr-2">{formattedPrice}</div> }
+          </div>
+
+          
 
           {/* Buttons */}
-          <button className="flex items-center justify-center gap-x-2 bg-black text-white py-3 px-6 rounded hover:bg-gray-900 transition-colors">
+          <button className="flex items-center justify-center gap-x-2 bg-black text-white py-3 px-6 rounded hover:bg-gray-900 transition-colors" onClick={() => addToCart(selectedProduct)}>
             Add to Cart <HiOutlineShoppingBag className="text-xl"/>
           </button>
-          <button className="flex items-center justify-center gap-x-2 border border-black text-black py-3 px-6 rounded hover:bg-gray-100 transition-colors mt-3">
-            Add to Wishlist <CiHeart className="text-black text-xl"/>
+
+          <button className="flex items-center justify-center gap-x-2 border border-black text-black py-3 px-6 rounded hover:bg-gray-100 transition-colors mt-2">
+            {isInWishlist ? 
+            <div onClick={() => removeFromWishlist(selectedProduct.id)} className="flex items-center justify-center gap-x-2">
+              <span>Remove From Wishlist</span>
+              <FaHeart className="text-black text-lg"/>
+            </div>
+            :
+            <div onClick={() => addToWishlist(selectedProduct)} className="flex items-center justify-center gap-x-2">
+              <span>Add to Wishlist</span>
+              <FaRegHeart className="text-black text-lg"/>
+            </div>
+          }
           </button>
+
+          <div className="bg-gray-100 rounded p-2 w-full mt-6">
+            <p className="flex items-center my-2 pl-4 text-sm"><TbTruckDelivery className="text-lg mr-2"/>Free express shipping over €99</p>
+            <p className="flex items-center my-2 pl-4 text-sm"><TbTruckReturn className="text-lg mr-2"/>Easy returns</p>
+          </div>
+
+          <DetailsAccordion details={selectedProduct.description}/>
+
+          <CompletedLook array={completedLook}/>
+
         </div>
       </div>
     </div>
-      
+
+    <ProductCarousel theme="discounted-items"/>
+
     </>
   )
 }
