@@ -31,7 +31,6 @@ function App() {
           <Route path="/about-us" element={<AboutUs />} />
           <Route path="/loyalty-club" element={<LoyaltyClub />} />
 
-
           <Route path="/all-products" element={<AllProducts concept="all-products" />} />
           <Route path="/pop-of-color" element={<AllProducts concept="pop-of-color" />} />
           <Route path="/best-sellers" element={<AllProducts concept="best-sellers" />} />

@@ -117,7 +117,7 @@ const Navbar = () => {
             </div>
 
             <div className="relative">
-              <RxPerson className="cursor-pointer text-xl" onClick={() => navigate("/profile")}/>
+              <RxPerson className="cursor-pointer text-xl" onClick={() => navigate("/login")}/>
             </div>
 
             <div className="relative">
