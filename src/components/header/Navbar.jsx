@@ -7,6 +7,7 @@ import { HiOutlineShoppingBag } from "react-icons/hi2";
 import ProductCarousel from "../main/ProductCarousel";
 import { useState } from "react";
 import useCartStore from "../../store/store";
+import newRelease from "../../assets/collection/soft-motion/softmotion-jacket-ash-grey-1.jpg";
 
 const Navbar = () => {
   const { cartCount, wishlistCount } = useCartStore();
@@ -30,42 +31,59 @@ const Navbar = () => {
           <div className="flex gap-8 ml-42">
 
               <div className="">
+
                 <input id="my-drawer" type="checkbox" className="drawer-toggle" />
                 <div className="drawer-content">
                   <label htmlFor="my-drawer" className="cursor-pointer drawer-button">SHOP</label>
                 </div>
+
                 <div className="drawer-side z-40">
                   <label htmlFor="my-drawer" aria-label="close sidebar" className="drawer-overlay"></label>
-                  <ul className="menu bg-black min-w-full h-80 p-4 mt-14 text-white opacity-95 ">
+                  <ul className="menu bg-black min-w-full h-[500px] p-4 mt-14 text-white opacity-95">
 
-                    <div className="flex items-center justify-center gap-x-10">
-                      <div className="flex flex-col text-white">
-                        <div className="font-semibold my-2">SHOP ALL PRODUCTS</div>
-                        <div className="cursor-pointer link-hover py-1 text-xs" onClick={() => navigate("/pop-of-color")}>Pop of Color</div>
-                        <div className="cursor-pointer link-hover py-1 text-xs" onClick={() => navigate("/new-releases")}>New Releases</div>
-                        <div className="cursor-pointer link-hover py-1 text-xs" onClick={() => navigate("/best-sellers")}>Best Sellers</div>
-                        <div className="cursor-pointer link-hover py-1 text-xs" onClick={() => navigate("/outlet")}>Outlet</div>
+                    <div className="flex items-left gap-x-10 h-full">
+
+                      <div className="flex flex-col text-white border-r border-zinc-100 pr-6 ml-90">
+                        <div className="font-semibold my-8">SHOP ALL PRODUCTS</div>
+                        <div className="cursor-pointer link-hover py-1 text-sm" onClick={() => navigate("/pop-of-color")}>Pop of Color</div>
+                        <div className="cursor-pointer link-hover py-1 text-sm" onClick={() => navigate("/new-releases")}>New Releases</div>
+                        <div className="cursor-pointer link-hover py-1 text-sm" onClick={() => navigate("/best-sellers")}>Best Sellers</div>
+                        <div className="cursor-pointer link-hover py-1 text-sm" onClick={() => navigate("/outlet")}>Outlet</div>
                       </div>
 
-                      <div className="flex flex-col text-white">
-                        <div className="font-semibold my-2">SHOP BY CATEGORY</div>
-                        <div className="cursor-pointer link-hover py-1 text-xs" onClick={() => navigate("/all-products")}>All Products</div>
-                        <div className="cursor-pointer link-hover py-1 text-xs" onClick={() => navigate("/leggings")}>Leggings</div>
-                        <div className="cursor-pointer link-hover py-1 text-xs" onClick={() => navigate("/joggers")}>Joggers</div>
-                        <div className="cursor-pointer link-hover py-1 text-xs" onClick={() => navigate("/hoodies")}>Hoodies & Sweatshirts</div>
-                        <div className="cursor-pointer link-hover py-1 text-xs" onClick={() => navigate("/jackets")}>Coats & Jackets</div>
-                        <div className="cursor-pointer link-hover py-1 text-xs" onClick={() => navigate("/shorts")}>Shorts</div>
-                        <div className="cursor-pointer link-hover py-1 text-xs" onClick={() => navigate("/bras")}>Sports Bras</div>
-                        <div className="cursor-pointer link-hover py-1 text-xs" onClick={() => navigate("/tops")}>T-Shirts & Tops</div>
+                      <div className="flex flex-col text-white border-r pr-6">
+                        <div className="font-semibold my-8">SHOP BY CATEGORY</div>
+                        <div className="cursor-pointer link-hover py-1 text-sm" onClick={() => navigate("/all-products")}>All Products</div>
+                        <div className="cursor-pointer link-hover py-1 text-sm" onClick={() => navigate("/leggings")}>Leggings</div>
+                        <div className="cursor-pointer link-hover py-1 text-sm" onClick={() => navigate("/joggers")}>Joggers</div>
+                        <div className="cursor-pointer link-hover py-1 text-sm" onClick={() => navigate("/hoodies")}>Hoodies & Sweatshirts</div>
+                        <div className="cursor-pointer link-hover py-1 text-sm" onClick={() => navigate("/jackets")}>Coats & Jackets</div>
+                        <div className="cursor-pointer link-hover py-1 text-sm" onClick={() => navigate("/shorts")}>Shorts</div>
+                        <div className="cursor-pointer link-hover py-1 text-sm" onClick={() => navigate("/bras")}>Sports Bras</div>
+                        <div className="cursor-pointer link-hover py-1 text-sm" onClick={() => navigate("/tops")}>T-Shirts & Tops</div>
                       </div>
 
-                      <div className="flex flex-col text-white">
-                        <div className="font-semibold my-2">SHOP BY COLLECTION</div>
-                        <div className="cursor-pointer link-hover py-1 text-xs" onClick={() => navigate("/effortless")}>Effortless</div>
-                        <div className="cursor-pointer link-hover py-1 text-xs" onClick={() => navigate("/soft-motion")}>SoftMotion™</div>
-                        <div className="cursor-pointer link-hover py-1 text-xs" onClick={() => navigate("/timeless")}>Timeless</div>
-                        <div className="cursor-pointer link-hover py-1 text-xs" onClick={() => navigate("/every-day")}>Everyday</div>
-                        <div className="cursor-pointer link-hover py-1 text-xs" onClick={() => navigate("/lounge")}>Lounge</div>
+                      <div className="flex flex-col text-white pr-6">
+                        <div className="font-semibold my-8">SHOP BY COLLECTION</div>
+                        <div className="cursor-pointer link-hover py-1 text-sm" onClick={() => navigate("/effortless")}>Effortless</div>
+                        <div className="cursor-pointer link-hover py-1 text-sm" onClick={() => navigate("/soft-motion")}>SoftMotion™</div>
+                        <div className="cursor-pointer link-hover py-1 text-sm" onClick={() => navigate("/timeless")}>Timeless</div>
+                        <div className="cursor-pointer link-hover py-1 text-sm" onClick={() => navigate("/every-day")}>Everyday</div>
+                        <div className="cursor-pointer link-hover py-1 text-sm" onClick={() => navigate("/lounge")}>Lounge</div>
+                      </div>
+
+                      <div className="flex-grow flex items-start justify-end mt-[-17px] mr-[-16px]">
+                        <div className="relative w-[403px] w-200">
+                          <img
+                            src={newRelease}
+                            alt="New Releases"
+                            className="w-full h-full object-cover cursor-pointer opacity-60"
+                            onClick={() => navigate("/new-releases")}
+                          />
+                          <div className="absolute bottom-4 left-4 text-xl font-semibold hover:text-zinc-300 cursor-pointer" onClick={() => navigate("/new-releases")}>
+                            New Releases
+                          </div>
+                        </div>
                       </div>
 
                     </div>
