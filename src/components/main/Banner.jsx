@@ -76,7 +76,7 @@ useEffect(() => {
 
 
   return (
-    <div className="w-full h-max-44 mb-12 mx-auto cursor-pointer" onClick={(() => navigate(`/${concept}`))}>
+    <div className="w-full h-max-44 mb-12 mx-auto cursor-pointer" onClick={() => navigate(`/${concept}`)}>
       <img src={currentImage} alt="banner" />
     </div>
   )

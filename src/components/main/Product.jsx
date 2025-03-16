@@ -6,10 +6,6 @@ import useCartStore from "../../store/store";
 
 const Product = ({ value }) => {
   const { addToWishlist, removeFromWishlist, isProductInWishlist } = useCartStore();
-  // (state) => ({
-  //   addToWishlist: state.addToWishlist,
-  //   wishlist: state.wishlist,
-  // })
 
   const isInWishlist = isProductInWishlist(value.id);
 
@@ -56,7 +52,7 @@ const Product = ({ value }) => {
        <img
           src={image[1]}
           alt={name}
-          className="absolute top-0 left-0 w-full object-cover opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
+          className="absolute top-0 left-0 w-full object-cover opacity-0 group-hover:opacity-100 transition-opacity duration-300"
         />
      </div>
 
@@ -71,7 +67,7 @@ const Product = ({ value }) => {
         <p className="text-xs text-gray-500 mb-3">{color}</p>
         {isDiscount ?  
         <div className="flex gap-x-2">
-          <div className="text-md font-semibold mb-8 line-through">€{price}.00</div>
+          <div className="text-md font-semibold mb-8 line-through">€{price.toFixed(2)}</div>
           <div className="text-lg font-semibold mb-8 text-red-500">{formattedPrice}</div>
         </div> : <div className="text-lg font-semibold mb-8">{formattedPrice}</div> }
 

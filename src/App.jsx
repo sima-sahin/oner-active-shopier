@@ -12,7 +12,6 @@ import Signup from "./pages/Signup";
 import NotFound from "./pages/NotFound";
 import Navbar from "./components/header/Navbar";
 import Footer from "./components/header/Footer";
-import Checkout from "./pages/Checkout";
 import AboutUs from './pages/AboutUs';
 import LoyaltyClub from './pages/LoyaltyClub';
 
@@ -53,7 +52,6 @@ function App() {
 
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
-          <Route path="/checkout" element={<Checkout />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>

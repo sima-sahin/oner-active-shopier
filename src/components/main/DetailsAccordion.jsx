@@ -1,7 +1,7 @@
 
 const DetailsAccordion = ({ details }) => {
   return (
-    <div className="my-6 divide-y divide-gray-300">
+    <div className="my-5 divide-y divide-gray-300">
         <div className="collapse collapse-arrow rounded">
         <input type="radio" name="my-accordion" />
         <div className="collapse-title">Product Details</div>

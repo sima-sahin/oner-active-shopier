@@ -22,25 +22,15 @@ const CategoryCarousel = () => {
   const navigate = useNavigate();
   const scrollContainerRef = useRef(null);
 
-    // Geri kaydırma fonksiyonu
-    const handlePrev = () => {
-      if (scrollContainerRef.current) {
-        scrollContainerRef.current.scrollBy({
-          left: -400, // İstediğiniz kadar piksel kaydırabilirsiniz
-          behavior: "smooth",
-        });
-      }
-    };
-
-    // İleri kaydırma fonksiyonu
-    const handleNext = () => {
-      if (scrollContainerRef.current) {
-        scrollContainerRef.current.scrollBy({
-          left: 400,
-          behavior: "smooth",
-        });
-      }
-    };
+  const handlePrev = () => {
+    if (!scrollContainerRef.current) return;
+    scrollContainerRef.current.scrollBy({ left: -400, behavior: "smooth" });
+  };
+  
+  const handleNext = () => {
+    if (!scrollContainerRef.current) return;
+    scrollContainerRef.current.scrollBy({ left: 400, behavior: "smooth" });
+  };
   
   return (
     <div className="mt-8 mb-12 mx-auto w-330">

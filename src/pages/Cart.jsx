@@ -16,9 +16,8 @@ import { SiApplepay } from "react-icons/si";
 const Cart = () => {
   const { cart, removeFromCart, clearCart, increment, decrement, wishlist, saveForLater, cartCount, totalPrice, totalOnerPoints, shippingCost} = useCartStore();
 
-  const formattedTotal = `€${totalPrice().toFixed(2)}`;
+  const formattedTotal = `€${(totalPrice()+shippingCost()).toFixed(2)}`;
 
-  // const totalOnerPoints = cart.map((value) => value.price);
 
   const navigate = useNavigate();
   const cartItems = cartCount();
@@ -76,7 +75,7 @@ const Cart = () => {
                     {/* Seçili beden */}
                     {value.size && (
                       <div className="border px-3 py-1 rounded-3xl">
-                        {value.size}
+                        {value.selectedSize}
                       </div>
                     )}
           
@@ -129,7 +128,7 @@ const Cart = () => {
             <div className="container w-full bg-zinc-100 p-6">
               <p className="text-lg font-bold">SUMMARY</p>
               <div className="bg-zinc-300 w-full h-[0.1px] my-2"></div>
-              <div className="flex items-center"> <IoMdStar className="text-blue-500 mr-1 mt-2 mb-4 text-xl" /> {totalOnerPoints} Oner Points for this purchase</div>
+              <div className="flex items-center"> <IoMdStar className="text-blue-500 mr-1 mt-2 mb-4 text-xl" /> {totalOnerPoints()} Oner Points for this purchase</div>
 
               <div className="flex items-center justify-between my-2 pr-4">
                 <p className="flex">Shipping</p>

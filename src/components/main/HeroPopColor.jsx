@@ -6,7 +6,6 @@ import popColor2 from "../../assets/banners/concept/pop-of-color-hero-4.jpg";
 const HeroPopColor = () => {
   const navigate = useNavigate();
 
-
     const [currentImage, setCurrentImage] = useState(popColor1);
     
     useEffect(() => {

@@ -14,21 +14,20 @@ import { TbTruckDelivery } from "react-icons/tb";
 import { TbTruckReturn } from "react-icons/tb";
 import { IoMdStar } from "react-icons/io";
 import useCartStore from "../store/store";
+import { useMemo } from "react";
 
 
 const Details = () => {
   const { addToCart, addToWishlist, isProductInWishlist, removeFromWishlist } = useCartStore();
 
-  // (state) => ({
-  //   addToCart: state.addToCart,
-  //   addToWishlist: state.addToWishlist,
-  //   wishlist: state.wishlist,
-  // })
-
-
   const { slug } = useParams();
   const navigate = useNavigate();
-  const selectedProduct = db.find((value) => value.slug === slug);
+
+  const selectedProduct = useMemo(() => 
+    db.find((value) => value.slug === slug), 
+    [slug]
+  );
+
   const isDiscount = selectedProduct.discountRate >= 10 ? true : false;
   const price = isDiscount ? selectedProduct.price*(100-selectedProduct.discountRate)/100 : selectedProduct.price;
   const formattedPrice = `€${price.toFixed(2)}`;
@@ -52,13 +51,22 @@ const Details = () => {
   });
 
   const allSizes = ["XS", "S", "M", "L", "XL", "XXL"];
-  const [selectedSize, setSelectedSize] = useState(null);
+  const [selectedSize, setSelectedSize] = useState("");
 
   const handleSizeClick = (sizeValue, isAvailable) => {
     if (isAvailable) {
       setSelectedSize(sizeValue);
     }
   };
+
+  const handleAddToCart = () => {
+    if (!selectedSize) {
+      // alert("Please select a size before adding to cart.");
+      return;
+    }
+    addToCart({ ...selectedProduct, selectedSize: selectedSize });
+  };
+
 
   return (
     <>
@@ -131,12 +139,12 @@ const Details = () => {
           <div className="my-2">
             <label htmlFor="size">Select size</label>
             <div className="flex items-center justify-evenly my-2">
-              {allSizes.map((value) => {
+              {allSizes.map((value, index) => {
                 const isAvailable = selectedProduct.size.includes(value);
                 const isSelected = selectedSize === value;
                 return (
                   <div
-                    key={value}
+                    key={index}
                     onClick={() => handleSizeClick(value, isAvailable)}
                     className={`border border-gray-300 py-3 text-center min-w-14 
                       ${isAvailable ? `cursor-pointer border-gray-300 
@@ -153,7 +161,6 @@ const Details = () => {
 
           {/* Size-Assistant */} 
           <div className="underline cursor-pointer text-xs hover:text-black">Size-Assistant: Find your perfect Size</div>
-
 
           <div className="flex justify-between items-start w-full max-w-md my-8">
             <div>
@@ -186,7 +193,7 @@ const Details = () => {
           
 
           {/* Buttons */}
-          <button className="flex items-center justify-center gap-x-2 bg-black text-white py-3 px-6 rounded hover:bg-gray-900 transition-colors" onClick={() => addToCart(selectedProduct)}>
+          <button className="flex items-center justify-center gap-x-2 bg-black text-white py-3 px-6 rounded hover:bg-gray-900 transition-colors" onClick={handleAddToCart}>
             Add to Cart <HiOutlineShoppingBag className="text-xl"/>
           </button>
 

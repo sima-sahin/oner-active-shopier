@@ -15,10 +15,20 @@ const CompletedLook = ({ array }) => {
       [productIndex]: newSize,
     }));
   };
+
+  const handleAddToCart = (product, productIndex) => {
+    const size = selectedSizes[productIndex];
+    // if (!size) {
+    //   alert("Please select a size before adding to cart.");
+    //   return;
+    // }
+    addToCart({ ...product, selectedSize: size });
+  };
+
   return (
     <div className="max-w-xl mx-auto px-4 mt-1">
       <h2 className="text-3xl font-bold mb-5">Complete the look</h2>
-      {array.slice(0, 2).map((item, index) => (
+      {array.slice(0, 3).map((item, index) => (
         <div key={index} className="flex gap-6 mb-8">
           <img
             src={item.image[0]}
@@ -46,7 +56,7 @@ const CompletedLook = ({ array }) => {
             </select>
 
             <div>
-            <button className="bg-black text-white py-2 px-4 rounded hover:bg-gray-800" onClick={() => addToCart(item)}>
+            <button className="bg-black text-white py-2 px-4 rounded hover:bg-gray-800" onClick={() => handleAddToCart(item, index)}>
               Quick Add
             </button>
             </div>
