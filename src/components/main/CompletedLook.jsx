@@ -39,7 +39,7 @@ const CompletedLook = ({ array }) => {
 
           <div>
             <h3 className="text-lg font-semibold mb-1">{item.name}</h3>
-            <p className="text-gray-700 mb-2">€{item.price.toFixed(2)}</p>
+            <p className="text-zinc-700 mb-2">€{item.price.toFixed(2)}</p>
 
             <select
               value={selectedSizes[index] || ""}
@@ -56,7 +56,7 @@ const CompletedLook = ({ array }) => {
             </select>
 
             <div>
-            <button className="bg-black text-white py-2 px-4 rounded hover:bg-gray-800" onClick={() => handleAddToCart(item, index)}>
+            <button className="bg-black text-white py-2 px-4 rounded hover:bg-zinc-800" onClick={() => handleAddToCart(item, index)}>
               Quick Add
             </button>
             </div>

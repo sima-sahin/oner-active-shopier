@@ -18,9 +18,10 @@ const Cart = () => {
 
   const formattedTotal = `€${(totalPrice()+shippingCost()).toFixed(2)}`;
 
-
   const navigate = useNavigate();
   const cartItems = cartCount();
+
+  const latestCartItems = [...cart].reverse();
 
   return (
     <div className="mt-14">
@@ -31,7 +32,7 @@ const Cart = () => {
           <p className="text-2xl font-semibold text-black">Your Shopping Cart</p>
       </div>
       <div 
-      className="flex flex-col ml-10 bg-black text-white px-4 py-2 w-26 text-center mb-8 cursor-pointer hover:shadow-md rounded-3xl" 
+      className="flex flex-col ml-10 bg-black text-white px-4 py-2 w-26 text-center mb-8 cursor-pointer hover:shadow-md rounded-3xl"
       onClick={() => clearCart()}>Clear Cart</div>
 
       {/* LEFT */}
@@ -39,10 +40,18 @@ const Cart = () => {
         
         <div className="flex w-5/7">
           <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 gap-y-6 w-full">
-            {cart.map((value) => {
+            {latestCartItems.map((value) => {
+              const discountedPrice = value.discountRate > 10  
+              ? value.price * (100 - value.discountRate) / 100 
+              : value.price;
               return (
                 <>
-                <div className="flex flex-col md:flex-row items-center gap-x-4 text-black">
+                <div className="flex flex-col md:flex-row items-center gap-x-4 text-black relative">
+                  {value.discountRate > 10  && (
+                  <span className="text-sm text-white bg-red-500 font-semibold tracking-wide mb-2 py-1 px-2 absolute top-1 right-7">
+                    {value.discountRate}%
+                  </span>
+                  )}
                 {/* Ürün Görseli */}
                 <div className="w-42 flex-shrink-0">
                   <img
@@ -59,13 +68,17 @@ const Cart = () => {
                   <div className="flex justify-between items-start mb-10">
                     <div>
                       <div className="text-md font-semibold">{value.name}</div>
-                      <p className="text-gray-500 text-sm">{value.color}</p>
-                      <div className="text-md font-semibold mt-8">{value.formattedPrice}</div>
+                      <p className="text-zinc-500 text-sm">{value.color}</p>
+                      {value.discountRate > 10 ?  
+                        <div className="flex gap-x-2 mr-2 mt-10">
+                          <div className="text-md font-semibold line-through">€{value.price.toFixed(2)}</div>
+                          <div className="text-lg font-semibold text-red-500">€{discountedPrice.toFixed(2)}</div>
+                        </div> : <div className="text-lg mt-10 font-semibold mr-2">€{value.price.toFixed(2)}</div> }
                     </div>
                   </div>
           
                   {/* Puan Bilgisi */}
-                  <div className="flex items-center text-gray-600 my-2 text-sm">
+                  <div className="flex items-center text-zinc-600 my-2 text-sm">
                     <IoMdStar className="text-blue-500 mr-1" />
                     <span>{value.onerPoints} Points</span>
                   </div>
@@ -82,13 +95,13 @@ const Cart = () => {
                     {/* Miktar Ayarı */}
                     <div className="flex items-center border rounded-3xl">
                       <button
-                        onClick={() => decrement(value.id)}
-                        className="px-2 py-[2px] hover:bg-gray-200 text-xl">-
+                        onClick={() => decrement(value.id, value.selectedSize)}
+                        className="px-2 py-[2px] hover:bg-zinc-200 text-xl">-
                       </button>
                       <span className="px-2 text-sm">{value.quantity}</span>
                       <button
-                        onClick={() => increment(value.id)}
-                        className="px-2 py-[2px] hover:bg-gray-200 text-xl">+
+                        onClick={() => increment(value.id, value.selectedSize)}
+                        className="px-2 py-[2px] hover:bg-zinc-200 text-xl">+
                       </button>
                     </div>
                   </div>
@@ -99,7 +112,7 @@ const Cart = () => {
                   {/* Kapatma ikonu (Sepetten kaldır) */}
                   <button
                     onClick={() => removeFromCart(value.id)}
-                    className="text-gray-500 hover:text-black"
+                    className="text-zinc-500 hover:text-black"
                     title="Remove from Cart">
                     <IoCloseSharp className="text-black" />
                   </button>

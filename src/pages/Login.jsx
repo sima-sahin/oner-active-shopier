@@ -21,7 +21,7 @@ const Login = () => {
         {/* 2 Sütun Düzeni */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
           {/* Sol Sütun: Giriş Formu */}
-          <div className="md:border-r md:border-gray-300 md:pr-8">
+          <div className="md:border-r md:border-zinc-300 md:pr-8">
             <h2 className="text-xl font-semibold mb-4">
               ALREADY HAVE AN ONER ACTIVE ACCOUNT?
             </h2>
@@ -35,7 +35,7 @@ const Login = () => {
                   id="email"
                   type="email"
                   placeholder="your-email@oneractive.com"
-                  className="border border-gray-300 w-full p-2 rounded focus:outline-none focus:ring-1 focus:ring-black"/>
+                  className="border border-zinc-300 w-full p-2 rounded focus:outline-none focus:ring-1 focus:ring-black"/>
               </div>
 
               {/* Şifre */}
@@ -48,12 +48,12 @@ const Login = () => {
                 <input
                   id="password"
                   type="password"
-                  className="border border-gray-300 w-full p-2 focus:outline-none focus:ring-1 focus:ring-black"/>
+                  className="border border-zinc-300 w-full p-2 focus:outline-none focus:ring-1 focus:ring-black"/>
               </div>
 
               {/* Şifreyi Unuttum Linki */}
               <div className="text-left">
-                <a href="#" className="text-xs text-gray-600 hover:underline">
+                <a href="#" className="text-xs text-zinc-600 hover:underline">
                   Forgot your password?
                 </a>
               </div>
@@ -61,7 +61,7 @@ const Login = () => {
               {/* Giriş Butonu */}
               <button
                 type="submit"
-                className="bg-black text-white px-10 py-2 hover:bg-gray-800 transition-colors rounded-3xl text-sm">
+                className="bg-black text-white px-10 py-2 hover:bg-zinc-800 transition-colors rounded-3xl text-sm">
                 LOG IN
               </button>
             </form>
@@ -104,7 +104,7 @@ const Login = () => {
               </p>
             </div>
             <button
-              className="bg-black text-white py-2 px-8 rounded-3xl hover:bg-gray-800 transition-colors"
+              className="bg-black text-white py-2 px-8 rounded-3xl hover:bg-zinc-800 transition-colors"
               onClick={() => navigate("/signup")}>
               SIGN UP NOW
             </button>

@@ -9,7 +9,7 @@ const useCartStore = create(
 
       addToCart: (product) => set((state) => {
         const existingItem = state.cart.find((item) => item.id === product.id && item.size === product.size);
-        const discountedPrice = product.isDiscount 
+        const discountedPrice = product.discountRate > 10  
           ? product.price * (100 - product.discountRate) / 100 
           : product.price;
         const formattedPrice = `€${discountedPrice.toFixed(2)}`;
@@ -36,15 +36,15 @@ const useCartStore = create(
 
       clearCart: () => set({ cart: [] }),
 
-      increment: (id) => set((state) => ({
+      increment: (id, size) => set((state) => ({
         cart: state.cart.map((item) =>
-          item.id === id ? { ...item, quantity: item.quantity + 1 } : item
+          item.id === id && item.selectedSize === size ? { ...item, quantity: item.quantity + 1 } : item
         ),
       })),
 
-      decrement: (id) => set((state) => ({
+      decrement: (id, size) => set((state) => ({
         cart: state.cart.map((item) =>
-          item.id === id && item.quantity > 1 ? { ...item, quantity: item.quantity - 1 } : item
+          item.id === id && item.selectedSize === size && item.quantity > 1 ? { ...item, quantity: item.quantity - 1 } : item
         ),
       })),
 

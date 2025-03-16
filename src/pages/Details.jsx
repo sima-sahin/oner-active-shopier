@@ -61,7 +61,7 @@ const Details = () => {
 
   const handleAddToCart = () => {
     if (!selectedSize) {
-      // alert("Please select a size before adding to cart.");
+      alert("Please select a size before adding to cart.");
       return;
     }
     addToCart({ ...selectedProduct, selectedSize: selectedSize });
@@ -127,7 +127,7 @@ const Details = () => {
                 key={index}
                 onClick={() => handleColorSelect(value.color, value.slug)}
                 className={`border hover:border-black cursor-pointer 
-                  ${selectedColor === value.color ? "border-black" : "border-gray-300"}`}>
+                  ${selectedColor === value.color ? "border-black" : "border-zinc-300"}`}>
                 <img className="w-16 h-16 object-cover"
                   src={value.image[0]}
                   alt={value.color} />
@@ -146,11 +146,11 @@ const Details = () => {
                   <div
                     key={index}
                     onClick={() => handleSizeClick(value, isAvailable)}
-                    className={`border border-gray-300 py-3 text-center min-w-14 
-                      ${isAvailable ? `cursor-pointer border-gray-300 
-                         ${isSelected ? "border-2 border-gray-500 text-black font-semibold" : "text-gray-700"}`
+                    className={`border border-zinc-300 py-3 text-center min-w-14 
+                      ${isAvailable ? `cursor-pointer border-zinc-300 
+                         ${isSelected ? "border-2 border-zinc-500 text-black font-semibold" : "text-zinc-700"}`
                       :
-                        "cursor-not-allowed line-through text-gray-400 border-gray-300"
+                        "cursor-not-allowed line-through text-zinc-400 border-zinc-300"
                       }`}>
                     {value}
                   </div>
@@ -185,7 +185,7 @@ const Details = () => {
 
              {/* Fiyat bilgisi */}
           {isDiscount ?  <div className="flex gap-x-2 mr-2">
-              <div className="text-lg font-semibold line-through">€{selectedProduct.price}.00</div>
+              <div className="text-lg font-semibold line-through">€{selectedProduct.price.toFixed(2)}</div>
               <div className="text-2xl font-semibold text-red-500">{formattedPrice}</div>
             </div> : <div className="text-2xl font-semibold mr-2">{formattedPrice}</div> }
           </div>
@@ -193,11 +193,11 @@ const Details = () => {
           
 
           {/* Buttons */}
-          <button className="flex items-center justify-center gap-x-2 bg-black text-white py-3 px-6 rounded hover:bg-gray-900 transition-colors" onClick={handleAddToCart}>
+          <button className="flex items-center justify-center gap-x-2 bg-black text-white py-3 px-6 rounded hover:bg-zinc-900 transition-colors" onClick={handleAddToCart}>
             Add to Cart <HiOutlineShoppingBag className="text-xl"/>
           </button>
 
-          <button className="flex items-center justify-center gap-x-2 border border-black text-black py-3 px-6 rounded hover:bg-gray-100 transition-colors mt-2">
+          <button className="flex items-center justify-center gap-x-2 border border-black text-black py-3 px-6 rounded hover:bg-zinc-100 transition-colors mt-2">
             {isInWishlist ? 
             <div onClick={() => removeFromWishlist(selectedProduct.id)} className="flex items-center justify-center gap-x-2">
               <span>Remove From Wishlist</span>
@@ -211,7 +211,7 @@ const Details = () => {
           }
           </button>
 
-          <div className="bg-gray-100 rounded p-2 w-full mt-6">
+          <div className="bg-zinc-100 rounded p-2 w-full mt-6">
             <p className="flex items-center my-2 pl-4 text-sm"><TbTruckDelivery className="text-lg mr-2"/>Free express shipping over €99</p>
             <p className="flex items-center my-2 pl-4 text-sm"><TbTruckReturn className="text-lg mr-2"/>Easy returns</p>
           </div>

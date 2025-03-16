@@ -78,7 +78,7 @@ const ProductCarousel = ({ theme }) => {
     <div className="relative">
       <button
         onClick={handlePrev}
-        className="absolute left-0 top-1/2 -translate-y-1/2 text-4xl font-light hover:text-gray-600 z-10 hidden md:block">
+        className="absolute left-0 top-1/2 -translate-y-1/2 text-4xl font-light hover:text-zinc-600 z-10 hidden md:block">
         <RiArrowLeftWideFill />
       </button>
 
@@ -96,7 +96,7 @@ const ProductCarousel = ({ theme }) => {
 
       <button
         onClick={handleNext}
-        className="absolute right-0 top-1/2 -translate-y-1/2 text-4xl font-light hover:text-gray-600 z-10 hidden md:block">
+        className="absolute right-0 top-1/2 -translate-y-1/2 text-4xl font-light hover:text-zinc-600 z-10 hidden md:block">
         <RiArrowRightWideFill />
       </button>
     </div>

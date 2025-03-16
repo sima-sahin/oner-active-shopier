@@ -81,7 +81,7 @@ function Signup() {
               type="text"
               required
               // value={firstName} onChange={(e) => setFirstName(e.target.value)}
-              className="border border-gray-300 w-full p-2 rounded focus:outline-none focus:ring-1 focus:ring-black"
+              className="border border-zinc-300 w-full p-2 rounded focus:outline-none focus:ring-1 focus:ring-black"
             />
           </div>
 
@@ -95,7 +95,7 @@ function Signup() {
               type="text"
               required
               // value={lastName} onChange={(e) => setLastName(e.target.value)}
-              className="border border-gray-300 w-full p-2 rounded focus:outline-none focus:ring-1 focus:ring-black"
+              className="border border-zinc-300 w-full p-2 rounded focus:outline-none focus:ring-1 focus:ring-black"
             />
           </div>
 
@@ -110,7 +110,7 @@ function Signup() {
               placeholder="your-email@oneractive.com"
               required
               // value={email} onChange={(e) => setEmail(e.target.value)}
-              className="border border-gray-300 w-full p-2 rounded focus:outline-none focus:ring-1 focus:ring-black"
+              className="border border-zinc-300 w-full p-2 rounded focus:outline-none focus:ring-1 focus:ring-black"
             />
           </div>
 
@@ -125,13 +125,13 @@ function Signup() {
                 type={passwordInputType}
                 required
                 // value={password} onChange={(e) => setPassword(e.target.value)}
-                className="border border-gray-300 w-full p-2 rounded focus:outline-none focus:ring-1 focus:ring-black pr-10"
+                className="border border-zinc-300 w-full p-2 rounded focus:outline-none focus:ring-1 focus:ring-black pr-10"
               />
               {/* Göz İkonu */}
               <button
                 type="button"
                 onClick={() => setShowPassword(!showPassword)}
-                className="absolute top-2 right-2 text-gray-600 hover:text-black"
+                className="absolute top-2 right-2 text-zinc-600 hover:text-black"
               >
                 {showPassword ? <AiOutlineEyeInvisible /> : <AiOutlineEye />}
               </button>
@@ -148,17 +148,17 @@ function Signup() {
               type="password"
               required
               // value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)}
-              className="border border-gray-300 w-full p-2 rounded focus:outline-none focus:ring-1 focus:ring-black"
+              className="border border-zinc-300 w-full p-2 rounded focus:outline-none focus:ring-1 focus:ring-black"
             />
           </div>
 
           {/* Zorunlu alan uyarısı */}
-          <p className="text-xs text-gray-500">* required</p>
+          <p className="text-xs text-zinc-500">* required</p>
 
           {/* SIGN UP Butonu */}
           <button
             type="submit"
-            className="bg-black text-white px-10 py-2 rounded-3xl hover:bg-gray-800 transition-colors font-semibold"
+            className="bg-black text-white px-10 py-2 rounded-3xl hover:bg-zinc-800 transition-colors font-semibold"
           >
             SIGN UP
           </button>
@@ -170,7 +170,7 @@ function Signup() {
           <button
             type="button"
             onClick={() => navigate("/login")}
-            className="underline font-medium hover:text-gray-700"
+            className="underline font-medium hover:text-zinc-700"
           >
             Log In
           </button>

@@ -20,7 +20,7 @@ const Product = ({ value }) => {
   return (
     <div className="relative bg-white w-78 overflow-hidden">
       {isNewBool && (
-        <div className="absolute top-2 left-2 border-1 border-gray-500 text-gray-800 text-xs px-2 py-1 rounded font-semibold z-20">
+        <div className="absolute top-2 left-2 border-1 border-zinc-500 text-zinc-800 text-xs px-2 py-1 rounded font-semibold z-20">
           NEW
         </div>
       )}
@@ -59,12 +59,12 @@ const Product = ({ value }) => {
       </NavLink>
       {/* Ürün Bilgileri */}
       <div className="p-4">
-        <h2 className="text-sm text-gray-700 font-semibold mb-1">
+        <h2 className="text-sm text-zinc-700 font-semibold mb-1">
           {name}
         </h2>
       
 
-        <p className="text-xs text-gray-500 mb-3">{color}</p>
+        <p className="text-xs text-zinc-500 mb-3">{color}</p>
         {isDiscount ?  
         <div className="flex gap-x-2">
           <div className="text-md font-semibold mb-8 line-through">€{price.toFixed(2)}</div>

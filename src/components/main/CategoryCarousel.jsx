@@ -38,7 +38,7 @@ const CategoryCarousel = () => {
       {/* Prev Button */}
       <button
         onClick={handlePrev}
-        className="absolute left-0 top-1/2 -translate-y-1/2 text-white text-4xl font-light hover:text-gray-300 z-10 hidden md:block">
+        className="absolute left-0 top-1/2 -translate-y-1/2 text-white text-4xl font-light hover:text-zinc-300 z-10 hidden md:block">
         <RiArrowLeftWideFill />
       </button>
 
@@ -56,7 +56,7 @@ const CategoryCarousel = () => {
       {/* Next Button */}
       <button
         onClick={handleNext}
-        className="absolute right-0 top-1/2 -translate-y-1/2 text-4xl text-white font-light hover:text-gray-300 z-10 hidden md:block">
+        className="absolute right-0 top-1/2 -translate-y-1/2 text-4xl text-white font-light hover:text-zinc-300 z-10 hidden md:block">
         <RiArrowRightWideFill />
       </button>
     </div>
